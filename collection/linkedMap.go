@@ -109,6 +109,24 @@ func (m *LinkedMap[K, V]) Remove(keys ...K) *LinkedMap[K, V] {
 	return m
 }
 
+func (m *LinkedMap[K, V]) GetVal(k K) V {
+	if d, ok := m.data[k]; ok {
+		return d.val
+	}
+
+	var v V
+	return v
+}
+
+func (m *LinkedMap[K, V]) Get(k K) (V, bool) {
+	if d, ok := m.data[k]; ok {
+		return d.val, true
+	}
+
+	var v V
+	return v, false
+}
+
 func (m *LinkedMap[K, V]) Contains(key K) bool {
 	_, ok := m.data[key]
 	return ok
